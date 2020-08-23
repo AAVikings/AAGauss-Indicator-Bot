@@ -110,8 +110,6 @@ exports.newUserBot = function newUserBot (bot, logger, COMMONS, UTILITIES, fileS
 
   const MODULE_NAME = 'User Bot'
 
-  const EXCHANGE_NAME = 'Poloniex'
-
   thisObject = {
     initialize: initialize,
     start: start
@@ -155,7 +153,7 @@ exports.newUserBot = function newUserBot (bot, logger, COMMONS, UTILITIES, fileS
       if (FULL_LOG === true) { logger.write(MODULE_NAME, '[INFO] start -> Entering function.') }
 
       let market = global.MARKET
-      let reportFilePath = EXCHANGE_NAME + '/Processes/' + bot.process
+      let reportFilePath = global.EXCHANGE_NAME + '/Processes/' + bot.process
       let executionTime
       let lastCandles
       let dateForLastOliviaFile
@@ -400,7 +398,7 @@ exports.newUserBot = function newUserBot (bot, logger, COMMONS, UTILITIES, fileS
                     let cache = dailyFileCache.get(cachePosition)
                     onDailyFileReceived(global.DEFAULT_OK_RESPONSE, cache)
                   } else {
-                    let filePath = 'AAMasters/AAOlivia.1.0/AACloud.1.1/Poloniex/dataSet.V1/Output/Candles/Multi-Period-Daily/' + folderName + '/' + datePath
+                    let filePath = 'AAMasters/AAOlivia.1.0/AACloud.1.1/' + global.EXCHANGE_NAME + '/dataSet.V1/Output/Candles/Multi-Period-Daily/' + folderName + '/' + datePath
                     let fileName = market.assetA + '_' + market.assetB + '.json'
                     fileStorage.getTextFile(bot.devTeam, filePath + '/' + fileName, onFileReceived)
                   }
